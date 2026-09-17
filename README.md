@@ -8,6 +8,8 @@ A lightweight, customizable React frame-by-frame mouse & touch animation package
 🔗 **NPM Package**: [https://www.npmjs.com/package/react-tailwind-click-frame-animation](https://www.npmjs.com/package/react-tailwind-click-frame-animation)  
 🐙 **GitHub Repository**: [https://github.com/kagancetin/react-tailwind-click-frame-animation](https://github.com/kagancetin/react-tailwind-click-frame-animation)
 
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://kagancetin.github.io/react-tailwind-click-frame-animation/)
+
 ---
 
 ## ✨ Features
