@@ -1,6 +1,6 @@
 {
   "name": "react-tailwind-click-frame-animation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A lightweight, customizable React frame-by-frame animation component for mouse events (click, context menu, drag, and scroll) styled with Tailwind CSS.",
   "type": "module",
   "author": "ismetcetin",

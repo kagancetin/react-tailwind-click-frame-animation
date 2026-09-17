@@ -27,3 +27,4 @@ export * from "./defaultConfig";
 export * from "./frameLoader";
 export * from "./gestureMath";
 export * from "./locales";
+export * from "./imagePreloader";

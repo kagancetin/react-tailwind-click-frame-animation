@@ -39,10 +39,8 @@ export default function ClickFrameEffect({
         if (!src) return null;
 
         return (
-          <img
+          <div
             key={anim.id}
-            src={src}
-            alt=""
             style={{
               position: "absolute",
               left: `${anim.x}px`,
@@ -53,7 +51,26 @@ export default function ClickFrameEffect({
               userSelect: "none",
               pointerEvents: "none",
             }}
-          />
+          >
+            {frames.map((frameSrc, idx) => (
+              <img
+                key={idx}
+                src={frameSrc}
+                alt=""
+                draggable={false}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  display: idx === anim.frame ? "block" : "none",
+                  userSelect: "none",
+                  pointerEvents: "none",
+                }}
+              />
+            ))}
+          </div>
         );
       })}
     </div>

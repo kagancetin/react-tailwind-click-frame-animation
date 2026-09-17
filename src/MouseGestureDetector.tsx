@@ -15,6 +15,7 @@ import { useMultiFrameAnimation } from "./useMultiFrameAnimation";
 import { resolveLocale, type LocaleData, type DeepPartial } from "./locales";
 import AnimationRenderer from "./AnimationRenderer";
 import GestureHUD from "./GestureHUD";
+import { preloadImages } from "./imagePreloader";
 
 export interface MouseGestureDetectorProps {
   config?: PartialMouseGesturesConfig;
@@ -110,13 +111,10 @@ export default function MouseGestureDetector({
     return map;
   }, [mergedConfig]);
 
-  // 3. Preload images into browser cache to eliminate visual flicker on first interaction
+  // 3. Preload and persistently cache images into browser memory to eliminate visual flicker and prevent cancellations
   useEffect(() => {
     const allUrls = Object.values(frameMap).flat();
-    allUrls.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
+    preloadImages(allUrls);
   }, [frameMap]);
 
   // 4. Central multi-instance animation engine

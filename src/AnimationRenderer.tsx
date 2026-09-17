@@ -38,10 +38,8 @@ export default function AnimationRenderer({
         const transform3d = `translate(-50%, -50%) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
 
         return (
-          <img
+          <div
             key={anim.id}
-            src={currentSrc}
-            alt=""
             style={{
               position: "absolute",
               left: `${anim.x}px`,
@@ -55,7 +53,26 @@ export default function AnimationRenderer({
               pointerEvents: "none",
               willChange: "transform, opacity",
             }}
-          />
+          >
+            {anim.frames.map((src, idx) => (
+              <img
+                key={idx}
+                src={src}
+                alt=""
+                draggable={false}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  display: idx === anim.frame ? "block" : "none",
+                  userSelect: "none",
+                  pointerEvents: "none",
+                }}
+              />
+            ))}
+          </div>
         );
       })}
     </div>
