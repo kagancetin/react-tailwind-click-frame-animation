@@ -2,8 +2,6 @@ import { useState } from "react";
 import {
   MouseGestureDetector,
   DEFAULT_CONFIG,
-  type DeepPartial,
-  type LocaleData,
 } from "react-tailwind-click-frame-animation";
 import {
   Sparkles,
@@ -23,26 +21,7 @@ import {
   Sliders,
 } from "lucide-react";
 
-// Turkish locale translation example
-const TURKISH_LOCALE: DeepPartial<LocaleData> = {
-  hud: {
-    lastDetected: "Algılanan Son Hareket:",
-  },
-  gestures: {
-    none: "Henüz bir hareket yapılmadı",
-    leftClick: "Sol Tık (Hafif Duman)",
-    rightClick: "Sağ Tık (Büyük Patlama)",
-    dragShoot: "Sürükle & Fırlat: Açı: {angle}°, Mesafe: {distance}px",
-    scrollDown: "Aşağı Kaydırma (3D Vorteks)",
-    scrollUp: "Yukarı Kaydırma (3D Vorteks)",
-    mobileLongPress: "Mobil Uzun Basma",
-    mobileTap: "Mobil Dokunma",
-    mobileSwipe: "Mobil Fırlatma: Açı: {angle}°, Mesafe: {distance}px",
-  },
-};
-
 export default function App() {
-  const [useCustomLocale, setUseCustomLocale] = useState(false);
   const [lastAction, setLastAction] = useState<string>("Ready! Click or drag anywhere.");
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
 
@@ -84,29 +63,25 @@ export default function App() {
             publicPath: import.meta.env.BASE_URL,
           },
         }}
-        locale={useCustomLocale ? TURKISH_LOCALE : undefined}
         onLeftClick={(d) => {
           setStats((prev) => ({ ...prev, leftClicks: prev.leftClicks + 1 }));
-          const text = useCustomLocale
-            ? `Sol Tık (${d.isTouch ? "Dokunma" : "Fare"}) - X: ${Math.round(d.x)}, Y: ${Math.round(d.y)}`
-            : `Left Click (${d.isTouch ? "Touch" : "Mouse"}) - X: ${Math.round(d.x)}, Y: ${Math.round(d.y)}`;
-          setLastAction(text);
+          setLastAction(
+            `Left Click (${d.isTouch ? "Touch" : "Mouse"}) - X: ${Math.round(d.x)}, Y: ${Math.round(d.y)}`
+          );
           addSpellLog(`Puff Burst cast at (${Math.round(d.x)}, ${Math.round(d.y)})`, "water", 5);
         }}
         onRightClick={(d) => {
           setStats((prev) => ({ ...prev, rightClicks: prev.rightClicks + 1 }));
-          const text = useCustomLocale
-            ? `Sağ Tık (${d.isTouch ? "Uzun Basma" : "Fare"}) - X: ${Math.round(d.x)}, Y: ${Math.round(d.y)}`
-            : `Right Click (${d.isTouch ? "Long Press" : "Mouse"}) - X: ${Math.round(d.x)}, Y: ${Math.round(d.y)}`;
-          setLastAction(text);
+          setLastAction(
+            `Right Click (${d.isTouch ? "Long Press" : "Mouse"}) - X: ${Math.round(d.x)}, Y: ${Math.round(d.y)}`
+          );
           addSpellLog(`Explosion Shockwave detonated at (${Math.round(d.x)}, ${Math.round(d.y)})!`, "explosion", 20);
         }}
         onDragShoot={(d) => {
           setStats((prev) => ({ ...prev, drags: prev.drags + 1 }));
-          const text = useCustomLocale
-            ? `Sürükle & Fırlat - Açı: ${Math.round(d.angleDeg)}°, Mesafe: ${Math.round(d.distance)}px`
-            : `Drag & Shoot - Angle: ${Math.round(d.angleDeg)}°, Distance: ${Math.round(d.distance)}px`;
-          setLastAction(text);
+          setLastAction(
+            `Drag & Shoot - Angle: ${Math.round(d.angleDeg)}°, Distance: ${Math.round(d.distance)}px`
+          );
           addSpellLog(
             `Fired projectile! Angle: ${Math.round(d.angleDeg)}°, Velocity: ${Math.round(d.distance)}px`,
             "projectile",
@@ -115,10 +90,7 @@ export default function App() {
         }}
         onScroll={(d) => {
           setStats((prev) => ({ ...prev, scrolls: prev.scrolls + 1 }));
-          const text = useCustomLocale
-            ? `Sayfa Kaydırma - Yön: ${d.direction}`
-            : `Scroll - Direction: ${d.direction}`;
-          setLastAction(text);
+          setLastAction(`Scroll - Direction: ${d.direction}`);
         }}
       />
 
@@ -146,28 +118,6 @@ export default function App() {
               <a href="#quickstart" className="hover:text-sky-400 transition-colors">Quick Start</a>
               <a href="#config" className="hover:text-sky-400 transition-colors">Config</a>
               <a href="#examples" className="hover:text-sky-400 transition-colors">Examples</a>
-            </div>
-
-            {/* Locale switcher */}
-            <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg p-0.5 text-xs">
-              <button
-                type="button"
-                onClick={() => setUseCustomLocale(false)}
-                className={`px-2.5 py-1 rounded-md transition font-medium ${
-                  !useCustomLocale ? "bg-sky-500 text-white shadow" : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                onClick={() => setUseCustomLocale(true)}
-                className={`px-2.5 py-1 rounded-md transition font-medium ${
-                  useCustomLocale ? "bg-sky-500 text-white shadow" : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                TR
-              </button>
             </div>
 
             {/* External Links */}
