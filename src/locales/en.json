@@ -1,0 +1,19 @@
+{
+  "hud": {
+    "lastDetected": "Last Detected Gesture:"
+  },
+  "gestures": {
+    "none": "No gesture detected yet",
+    "leftClick": "Left Click",
+    "rightClick": "Right Click",
+    "dragShoot": "Drag & Shoot: Angle: {angle}°, Distance: {distance}px",
+    "scrollDown": "Scroll Down (Clockwise)",
+    "scrollUp": "Scroll Up (Counter-Clockwise)",
+    "mobileLongPress": "Mobile Long Press",
+    "mobileTap": "Mobile Tap",
+    "mobileSwipe": "Mobile Swipe: Angle: {angle}°, Distance: {distance}px"
+  },
+  "warnings": {
+    "folderNotFound": "[MouseGestures] Frame count not found for folder '{folder}'."
+  }
+}
